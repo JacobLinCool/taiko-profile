@@ -26,6 +26,7 @@ export interface UserProfile {
 }
 
 export function parse(html: string): UserProfile {
+	console.log(html);
 	const document = parseDocument(html);
 
 	const mainArea = selectOne('#mydon_area', document);
@@ -43,7 +44,7 @@ export function parse(html: string): UserProfile {
 
 	const regionElement = select('#mydon_area .detail p', document)[0];
 	// @ts-expect-error bad typed
-	const region = regionElement?.children[0]?.data.split('：')[1].trim() || '';
+	const region = regionElement?.children[0]?.data.split('：')[1]?.trim() || '';
 
 	const favoriteSongElement = selectOne('#songList .songName', document);
 	// @ts-expect-error bad typed
